@@ -6,7 +6,8 @@ var q = false;
 var W,H,w,h;
 
 function setup() {
-	if(deviceOrientation){
+	var ua = navigator.userAgent;
+	if(ua.indexOf("iPhone")>0||ua.indexOf("Android")>0||ua.indexOf("iPad")>0||ua.indexOf("iPod")>0){
 		W=windowWidth;H=windowHeight;
 	}else{
 		W=400;H=600;
@@ -32,7 +33,7 @@ function setup() {
 }
 
 function draw() {
-  background(220);
+	background(220);
 	for(var i=1;i<10;i++){
 		line(s*i,0,s*i,st)
 		line(0,s*i,st,s*i)
@@ -50,6 +51,7 @@ function draw() {
 	if(t==="gameOver"){
 		text("GameOver",100,100)
 	}
+     
 	btnDraw()
 	translate(0,0)
 }
