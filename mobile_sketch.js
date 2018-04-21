@@ -28,7 +28,7 @@ function setup() {
 		}
 	}
 	a[1][5] = 2;
-	frameRate(3)
+	frameRate(10)
 }
 
 function draw() {
@@ -68,15 +68,31 @@ function btnDraw(){
    text("->",W*5/6,W+s)
 }
 
+function createArr(n,option,option2,Ln,Rn,num){
+	if(!option){option=0}
+	var arr = [];
+	for(var i = 0;i<n;i++){
+		append(arr,option)
+	}
+	if(option2){
+		arr[Ln] = num
+		arr[Rn] = num
+	}
+	return arr;
+}
+
 function ClearLine(){
 	for(var i=1;i<10;i++){
 		if(a[9][i]!==3){
 			return false
 		}
 	}
-	for(var j=1;j<10;j++){
-		a[9][j] = 0;
-	}
+	a.shift()
+	a.unshift(createArr(11,0,true,0,10,1))
+	a.unshift(createArr(11,1))
+	a.pop()
+	a.pop()
+	a.push(createArr(11,1))
 }
 
 function doOnce(){
@@ -141,4 +157,3 @@ function touchStarted(){
 		}
 	}
 }
-
