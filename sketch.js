@@ -147,7 +147,7 @@ function keyPressed(){
 	}
 }
 
-function touchStarted(){
+function touchEnded(){
   if(!q){
 		if      (mouseX<(W/3)){
 			q = "<-"
