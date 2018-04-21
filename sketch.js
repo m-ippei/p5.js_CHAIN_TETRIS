@@ -6,14 +6,14 @@ var q = false;
 var W,H,w,h;
 
 function setup() {
-     if(deviceOrientation){
-			 W=windowWidth;H=windowHeight;
-		 }else{
-			 W=400;H=600;
-		 }
+	if(deviceOrientation){
+		W=windowWidth;H=windowHeight;
+	}else{
+		W=400;H=600;
+	}
 	w=W/2;h=H/2
 	st = W;
-  createCanvas(st, H);
+	createCanvas(st, H);
 	s = st/9
 	for(var i = 0;i<11;i++){
 		append(a,[])
@@ -28,7 +28,7 @@ function setup() {
 		}
 	}
 	a[1][5] = 2;
-	frameRate(10)
+	frameRate(3)
 }
 
 function draw() {
@@ -50,22 +50,19 @@ function draw() {
 	if(t==="gameOver"){
 		text("GameOver",100,100)
 	}
-     
-     btnDraw()
-
+	btnDraw()
 	translate(0,0)
 }
 
 function btnDraw(){
-  translate(-s/2,-s/2)
-  //ellipse(mouseX,mouseY,10,10)
-   line(W/3,W,W/3,W+(s*2))
-   line(W*2/3,W,W*2/3,W+(s*2))
-   line(0,W+(s*2),W,W+(s*2))
-   textSize(30)
-   textAlign(CENTER)
-   text("<-",W/6,W+s)
-   text("->",W*5/6,W+s)
+	translate(-s/2,-s/2)
+	line(W/3,W,W/3,W+(s*2))
+	line(W*2/3,W,W*2/3,W+(s*2))
+	line(0,W+(s*2),W,W+(s*2))
+	textSize(30)
+	textAlign(CENTER)
+	text("<-",W/6,W+s)
+	text("->",W*5/6,W+s)
 }
 
 function createArr(n,option,option2,Ln,Rn,num){
