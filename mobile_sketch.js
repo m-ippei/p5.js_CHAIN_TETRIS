@@ -68,7 +68,19 @@ function btnDraw(){
    text("->",W*5/6,W+s)
 }
 
+function ClearLine(){
+	for(var i=1;i<10;i++){
+		if(a[9][i]!==3){
+			return false
+		}
+	}
+	for(var j=1;j<10;j++){
+		a[9][j] = 0;
+	}
+}
+
 function doOnce(){
+	ClearLine()
 	for(var l=1;l<10;l++){
 		for(var m=1;m<10;m++){
 			if(a[2][5] === 3){
