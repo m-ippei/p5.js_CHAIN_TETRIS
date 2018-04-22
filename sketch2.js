@@ -1,5 +1,3 @@
-
-
 var patternA = [
 	[
 		[0,1,0],
@@ -23,8 +21,11 @@ var patternA = [
 	]
 ]
 
+// air 0 moveBlock 1 onBlock 2 wall 3
+
 var field = [];
 var metl = 0;
+var oN = 0
 var W,H;
 
 function drawCordinate(){
@@ -41,9 +42,9 @@ function setField(wid,hig){
 		append(field,[])
 		for(var j = 0;j<11;j++){
 			if(j===0){
-				field[i][j] = 1
+				field[i][j] = 3
 			}else if(i===10||j===10){
-				field[i][j] = 1
+				field[i][j] = 3
 			}else{
 				field[i][j] = 0
 			}
@@ -86,8 +87,18 @@ function setup() {
 function draw() {
 	background(220);
 	drawCordinate();
-	drawBlock(5,1,patternA,0);
+	drawBlock(5,3,patternA,oN);
 	drawBlocks(field,metl)
 }
 
+function countUp(){
+	if(oN===3){
+		oN=0;
+	}else{
+		oN+=1;
+	}
+}
 
+function touchEnded() {
+	countUp();
+}
