@@ -1,4 +1,4 @@
-var a = []
+var FIELD = []
 var mino = [
 	[
 		[0,0,0,0],
@@ -38,27 +38,32 @@ var mino = [
 	]
 ]
 var b = mino[0]
+var INDEX = 1;
+var x=4;
+var y=1;
 
-function dt(arr){
+function dt(arr,option){
+	if(!option){option=300}
 	for(var i=0,len = arr.length;i<len;i++){
-		text(arr[i],100,(i*10)+10)
+		text(arr[i],100,(i*10)+10+option)
 	}
 }
 
 function setup() {
   createCanvas(400, 400);
 	for(var i = 0;i<22;i++){
-		append(a,[])
+		append(FIELD,[])
 		for(var j = 0;j<12;j++){
 			if(i===0||j===0){
-				a[i][j] = 9
+				FIELD[i][j] = 9
 			}else if(i===21||j===11){
-				a[i][j] = 9
+				FIELD[i][j] = 9
 			}else{
-				a[i][j] = 0
+				FIELD[i][j] = 0
 			}
 		}
 	}
+	frameRate(1)
 }
 
 function Rotate(arr){
@@ -71,11 +76,39 @@ function Rotate(arr){
 	return t_arr;
 }
 
-function mouseClicked(){
-	b = Rotate(b)
+function put(){
+	for(var i = 0;i < 4;i++){
+		for(var j = 0;j < 4;j++){
+			FIELD[y+i][x+j] = b[i][j];
+		}
+	}
 }
+
+function keyReleased(){
+	if(keyCode===39){
+		b = Rotate(b)
+	}else if(keyCode===32){
+		b = mino[INDEX]
+		if(INDEX===6){
+			INDEX = 0
+		}else{
+			INDEX += 1
+		}	
+	}else if(keyCode===80){
+		put();
+	}
+}
+
+
 
 function draw() {
   background(220);
 	dt(b)
+	dt(FIELD,1);
+	put();
+	if(y<17){
+		y++
+	}else if(y===17){
+		y=0
+	}
 }
