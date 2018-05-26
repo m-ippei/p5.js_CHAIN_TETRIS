@@ -1,1 +1,1 @@
-# p5.js_SNORIS_GAME
+# p5.js_CHAIN_TETRIS
