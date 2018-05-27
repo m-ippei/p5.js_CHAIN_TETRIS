@@ -23,10 +23,19 @@ function createBlock(x,y) {
 			}
 		}
 	}
-	field[x][4] = mino[0][1][0]
-	field[x][5] = mino[0][1][1]
-	field[x][6] = mino[0][1][2]
-	field[x][7] = mino[0][1][3]
+	for(var k=0;k<4;k++){
+		for(var l=0;l<4;l++){
+			if(mino[k][l]){
+				field[x+k][l+y] = mino[k][l]
+			}
+		}
+	}
+	/*
+	field[x][4] = mino[1][0]
+	field[x][5] = mino[1][1]
+	field[x][6] = mino[1][2]
+	field[x][7] = mino[1][3]
+	*/
 }
 
 function drawField(){
@@ -71,7 +80,7 @@ var field = [
 	[1,1,1,1,1,1,1,1,1,1,1,1],
 ]
 
-var mino = [
+var minos = [
 	[
 		[0,0,0,0],
 		[1,1,1,1],
@@ -109,3 +118,5 @@ var mino = [
 		[0,0,0,0]
 	]
 ]
+
+var mino = minos[0]
