@@ -85,7 +85,7 @@ function put(){
 }
 
 function keyReleased(){
-	if(keyCode===39){
+	if(keyCode===38){
 		b = Rotate(b)
 	}else if(keyCode===32){
 		b = mino[INDEX]
@@ -94,8 +94,10 @@ function keyReleased(){
 		}else{
 			INDEX += 1
 		}	
-	}else if(keyCode===80){
-		put();
+	}else if(keyCode===37){
+		x-=1
+	}else if(keyCode===39){
+		x+=1
 	}
 }
 
@@ -105,10 +107,10 @@ function draw() {
   background(220);
 	dt(b)
 	dt(FIELD,1);
-	put();
 	if(y<17){
 		y++
 	}else if(y===17){
 		y=0
 	}
+	put()
 }
