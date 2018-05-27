@@ -5,33 +5,49 @@ function setup() {
 
 function draw() {
   background(220);
-	y++
-	checkField()
+	copyField()
+	if(checkField()){
+		updateField()
+		y++
+	}else{
+		not_update()
+	}
 	drawField()
 }
 
-function clearFiled(){
-	
+function updateField(){
+	for(var i=0;i<4;i++){
+		for(var j=0;j<4;j++){
+			field[j+y][i+x] = fallBlock[j][i]
+		}
+	}
+}
+
+function not_update(){
+	for(var i=0;i<4;i++){
+		for(var j=0;j<4;j++){
+			field[j+y][i+x] = before_FieldAndMino
+		}
+	}
 }
 
 function checkField(){
-	for(var k=0;k<4;k++){
-		for(var l=0;l<4;l++){
-			if(fallBlock[l][k]&&field[l+y][k+x]){
-				return false
+	for(var i=0;i<4;i++){
+		for(var j=0;j<4;j++){
+			if(field[j+y][i+x]>0){
+				if(fallBlock[j][i]===1){
+					return false
+				}
 			}
 		}
 	}
-	updateField()
+	return true
 }
 
-function updateField(){
-	field = empty_field
+function copyField(){
 	for(var i=0;i<4;i++){
 		for(var j=0;j<4;j++){
-			if(field[j+y][i+x]===0){
-				field[j+y][i+x] = fallBlock[j][i]
-			}
+			before_FieldAndMino = field[j+y][i+x]
 		}
 	}
 }
@@ -56,33 +72,7 @@ function drawField(){
 
 
 var field = [
-	[1,0,0,0,0,0,0,0,0,0,0,1],
-	[1,0,0,0,0,0,0,0,0,0,0,1],
-	[1,0,0,0,0,0,0,0,0,0,0,1],
-	[1,0,0,0,0,0,0,0,0,0,0,1],
-	[1,0,0,0,0,0,0,0,0,0,0,1],
-	[1,0,0,0,0,0,0,0,0,0,0,1],
-	[1,0,0,0,0,0,0,0,0,0,0,1],
-	[1,0,0,0,0,0,0,0,0,0,0,1],
-	[1,0,0,0,0,0,0,0,0,0,0,1],
-	[1,0,0,0,0,0,0,0,0,0,0,1],
-	[1,0,0,0,0,0,0,0,0,0,0,1],
-	[1,0,0,0,0,0,0,0,0,0,0,1],
-	[1,0,0,0,0,0,0,0,0,0,0,1],
-	[1,0,0,0,0,0,0,0,0,0,0,1],
-	[1,0,0,0,3,3,0,0,0,0,0,1],
-	[1,0,0,0,0,0,0,0,0,0,0,1],
-	[1,0,0,0,0,0,0,0,0,0,0,1],
-	[1,0,0,0,0,0,0,0,0,0,0,1],
-	[1,0,0,0,0,0,0,0,0,0,0,1],
-	[1,0,0,0,0,0,0,0,0,0,0,1],
-	[1,0,0,0,0,0,0,0,0,0,0,1],
-	[1,1,1,1,1,1,1,1,1,1,1,1],
-]
-
-
-var empty_field = [
-	[1,0,0,0,0,0,0,0,0,0,0,1],
+	[1,0,0,0,1,0,0,0,0,0,0,1],
 	[1,0,0,0,0,0,0,0,0,0,0,1],
 	[1,0,0,0,0,0,0,0,0,0,0,1],
 	[1,0,0,0,0,0,0,0,0,0,0,1],
@@ -108,8 +98,8 @@ var empty_field = [
 
 var mino = [
 	[
-		[0,0,0,0],
 		[1,1,1,1],
+		[0,0,0,0],
 		[0,0,0,0],
 		[0,0,0,0]
 	],[
@@ -148,3 +138,4 @@ var mino = [
 var x = 4;
 var y = 0;
 var fallBlock = mino[0]
+var before_FieldAndMino = [[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]]
