@@ -6,12 +6,18 @@ function setup() {
 function draw() {
   background(220);
 	drawField()
-	if(createBlock(0,4)===false){
+	if(createBlock(down,4)===false){
 		fill(255,0,0)
 		text("GameOver",30,110)
 	}else{
 		fill(255,0,0)
 		text("NowPlay",30,110)
+	}
+}
+
+function keyReleased(){
+	if(keyCode===40){
+		down+=1
 	}
 }
 
@@ -120,3 +126,4 @@ var minos = [
 ]
 
 var mino = minos[0]
+var down = 0
