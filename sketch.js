@@ -63,9 +63,40 @@ function setup() {
 
 function draw() {
   background(220);
+	mino.Y += 1
+	put_inField()
 	drawField()
 	drawMino()
-	mino.Y += 1
+}
+
+function put_inField() {
+	if(tryMove(mino.X,mino.Y)){
+		for(var i = 0;i<4;i++){
+			for(var j = 0;j<4;j++){
+				if((mino.Y+i)<22){
+					Field[mino.Y+i][mino.X+j] = 0
+			    if(mino.shape[i][j]){
+						Field[mino.Y+i][mino.X+j] = mino.color
+					}
+				}
+			}
+		}
+	}else{
+		mino.Y = 0
+	}
+}
+
+function tryMove(){
+	for(var i = 0;i<4;i++){
+		for(var j = 0;j<4;j++){
+			if((mino.Y+i)<22){
+				if(Field[mino.Y+i][mino.X+j] > 0 && mino.shape[i][j] > 0){
+					return false;
+				}
+			}
+		}
+	}
+	return true;
 }
 
 function drawMino(){
@@ -88,6 +119,8 @@ function drawField(){
 				fill(30,150,200)
 			}else if(Field[j][i] === 9){
 				fill("#eabf4c")
+			}else if(typeof Field[j][i] === "string"){
+				fill(Field[j][i])
 			}else{
 			}
 			rect(i*10,j*10,10,10)
