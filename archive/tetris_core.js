@@ -28,3 +28,23 @@ function tryMove(x,y,mino,board){
 	}
 	return true;
 }
+
+/*
+function put_inField() {
+	if(tryMove()){
+		for(var i = 0;i<4;i++){
+			for(var j = 0;j<4;j++){
+				if((mino.Y+i)<22){
+					Field[mino.Y+i][mino.X+j] = 0
+			    if(mino.shape[i][j]){
+						Field[mino.Y+i][mino.X+j] = mino.color
+					}
+				}
+			}
+		}
+		
+	}else{
+		mino.Y = 0
+	}
+}
+*/
