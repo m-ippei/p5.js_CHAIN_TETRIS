@@ -68,24 +68,52 @@ function setup() {
 function draw() {
   background(220);
 	
-	
-	gameProcessing()
+	moveDown()
 	
 	drawField()
   drawMino()
 }
 
-
-
-function gameProcessing(){
-	if(tryMove()){
-	}else{
+function moveDown(){
+	mino.Y += 1
+	if(tryMove()===false){
+		mino.Y -= 1
 		put_inField()
 		mino.Y = 0
 		mino.X = 4
 		createMino()
 	}
 }
+
+
+
+function rotateMino(dir){
+	if (dir===undefined){dir="Right"}
+	var keepMino = mino.shape
+	var rotatedMino = [[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]]
+	for(var i = 0;i < 4;i++){
+		for(var j = 0;j < 4;j++){
+			if      (dir==="Right"){
+				rotatedMino[i][j] = mino.shape[3-j][i]
+			}else if(dir==="Left"){
+				rotatedMino[i][j] = mino.shape[j][3-i];
+			}
+		}
+	}
+	mino.shape = rotatedMino
+	if(tryMove()===false){
+		mino.shape = keepMino
+	}
+}
+
+function keyReleased(){
+	if(keyCode===38){
+		rotateMino("Right")
+	}else if(keyCode===90){
+		rotateMino("Left")
+	}
+}
+
 
 function put_inField() {
 	for(var i = 0;i<4;i++){
@@ -98,16 +126,13 @@ function put_inField() {
 }
 
 function tryMove(){
-	mino.Y += 1
 	for(var i = 0;i<4;i++){
 		for(var j = 0;j<4;j++){
 			if((mino.Y+i)<22){
 				if((typeof Field[mino.Y+i][mino.X+j] === "string") && mino.shape[i][j]){
-					mino.Y -= 1
 					return false;
 				}
 				if(Field[mino.Y+i][mino.X+j] > 0 && mino.shape[i][j] > 0){
-					mino.Y -= 1
 					return false;
 				}
 			}
