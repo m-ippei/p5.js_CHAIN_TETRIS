@@ -92,7 +92,7 @@ function setup() {
 
 function draw() {
   background(220);
-	DeleteCheck()
+	deleteLines()
 	
 	moveMino("DOWN")
 	
@@ -173,7 +173,7 @@ function Delete(num) {
 	Field = arr
 }
 
-function CheckArr(arr) {
+function checkArr(arr) {
 	for(var i = 0; i < 11;i++){
 		if(arr[i] === false){
 			return false
