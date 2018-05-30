@@ -52,8 +52,7 @@ var mino  = {
 }
 
 function createMino(){
-	//mino.shape = random(minos)
-	mino.shape = minos[0]
+	mino.shape = random(minos)
 	mino.color = random(colors)
 	mino.X = 4
 	mino.Y = 0
@@ -69,13 +68,16 @@ function setup() {
 function draw() {
   background(220);
 	
-
-	a()
+	
+	gameProcessing()
+	
 	drawField()
   drawMino()
 }
 
-function a(){
+
+
+function gameProcessing(){
 	if(tryMove()){
 	}else{
 		put_inField()
