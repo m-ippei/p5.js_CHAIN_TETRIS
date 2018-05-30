@@ -68,10 +68,39 @@ function setup() {
 function draw() {
   background(220);
 	
-	moveDown()
+	moveMino("DOWN")
 	
 	drawField()
   drawMino()
+}
+
+function moveMino(dir){
+	switch(dir) {
+		case "LEFT":
+			mino.X -= 1
+			if(tryMove()===false){
+				mino.X += 1
+			}
+			break;
+		case "RIGHT":
+			mino.X += 1
+			if(tryMove()===false){
+				mino.X -= 1
+			}
+		  break;
+		case "DOWN":
+			mino.Y += 1
+			if(tryMove()===false){
+				mino.Y -= 1
+				put_inField()
+				mino.Y = 0
+				mino.X = 4
+				createMino()
+			}
+			break;
+		default:
+			move("DOWN")
+	}
 }
 
 function moveDown(){
@@ -88,14 +117,14 @@ function moveDown(){
 
 
 function rotateMino(dir){
-	if (dir===undefined){dir="Right"}
+	if (dir===undefined){dir="RIGHT"}
 	var keepMino = mino.shape
 	var rotatedMino = [[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]]
 	for(var i = 0;i < 4;i++){
 		for(var j = 0;j < 4;j++){
-			if      (dir==="Right"){
+			if      (dir==="RIGHT"){
 				rotatedMino[i][j] = mino.shape[3-j][i]
-			}else if(dir==="Left"){
+			}else if(dir==="LEFT"){
 				rotatedMino[i][j] = mino.shape[j][3-i];
 			}
 		}
@@ -108,9 +137,13 @@ function rotateMino(dir){
 
 function keyReleased(){
 	if(keyCode===38){
-		rotateMino("Right")
+		rotateMino("RIGHT")
 	}else if(keyCode===90){
-		rotateMino("Left")
+		rotateMino("LEFT")
+	}else if(keyCode===39){
+		moveMino("RIGHT")
+	}else if(keyCode===37){
+		moveMino("LEFT")
 	}
 }
 
