@@ -61,7 +61,7 @@ function createMino(){
 
 function setup() {
   createCanvas(120, 220);
-	frameRate(2)
+	frameRate(4)
 	createMino()
 	stroke(70)
 }
@@ -100,8 +100,9 @@ function tryMove(){
 	for(var i = 0;i<4;i++){
 		for(var j = 0;j<4;j++){
 			if((mino.Y+i)<22){
-				if(typeof Field[mino.Y+i][mino.X+j] === "string"){
-						return false;
+				if((typeof Field[mino.Y+i][mino.X+j] === "string") && mino.shape[i][j]){
+					mino.Y -= 1
+					return false;
 				}
 				if(Field[mino.Y+i][mino.X+j] > 0 && mino.shape[i][j] > 0){
 					mino.Y -= 1
