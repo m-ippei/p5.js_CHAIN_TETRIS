@@ -51,6 +51,8 @@ var mino  = {
 	"minoY":0
 }
 
+var isGameOver = false;
+
 function createMino(){
 	mino.shape = random(minos)
 	mino.color = random(colors)
@@ -89,10 +91,16 @@ function draw() {
 	
 	clearLine()
 	
-	moveMino("DOWN")
+	if(isGameOver===false){
+		moveMino("DOWN")
+	}
 	
 	drawField()
   drawMino()
+	if(isGameOver){
+		fill("red")
+		text("GameOver",10,100)
+	}
 }
 
 function moveMino(dir){
@@ -117,6 +125,9 @@ function moveMino(dir){
 				mino.Y = 0
 				mino.X = 4
 				createMino()
+				if(tryMove()===false){
+					isGameOver = true
+				}
 			}
 			break;
 		default:
