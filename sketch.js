@@ -58,6 +58,25 @@ function createMino(){
 	mino.Y = 0
 }
 
+function clearLine() {
+	var deleteArr = []
+	Field = Field.filter((arr,index)=>{
+		for(var i = 1;i<=10;i++) {
+			if(typeof arr[i] === "string"){
+				if(i===10){
+					append(deleteArr,index)
+				}
+			}else{
+				return true
+			}
+		}
+		})
+	
+	for(var i=0;i<deleteArr.length;i++){
+		Field.unshift([9,0,0,0,0,0,0,0,0,0,0,9])
+	}
+}
+
 function setup() {
   createCanvas(120, 220);
 	frameRate(4)
@@ -67,6 +86,8 @@ function setup() {
 
 function draw() {
   background(220);
+	
+	clearLine()
 	
 	moveMino("DOWN")
 	
