@@ -19,7 +19,7 @@ function setup() {
   a[9] = 0//translate y
   a[10] = ""//color
   putBlock()
-  frameRate(1)
+  frameRate(20)
 }
 
 function putBlock() {
@@ -42,10 +42,11 @@ function putBlock() {
 
 function Rect(x,y,tx,ty) {
 	//rectMode(CENTER)
-	translate(tx,ty)
-	translate(x,-y)
+	//translate(tx,ty)
+	//translate(x,-y)
   //translate(x,y)
-	rect(x,y,10,10)
+  translate(x+100,-y+100)
+	rect(0,0,10,10)
 }
 
 function go(arr){
