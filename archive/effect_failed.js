@@ -42,10 +42,11 @@ function putBlock() {
 
 function Rect(x,y,tx,ty) {
 	//rectMode(CENTER)
-	//translate(tx,ty)
+  //translate(0,0)
+	translate(tx,ty)
 	//translate(x,-y)
   //translate(x,y)
-  translate(x+100,-y+100)
+  translate(x,-y)
 	rect(0,0,10,10)
 }
 
@@ -75,6 +76,9 @@ function go(arr){
 }
 
 function drawBlock() {
+  
+  
+  /*
   for(var i = 0;i<blockParts.length;i++){
     for(var j = 0;j<blockParts[i].length;j++){
       blockParts[i][j] = go(blockParts[i][j])
@@ -82,6 +86,14 @@ function drawBlock() {
       Rect(blockParts[i][j][6].x,blockParts[i][j][6].y,blockParts[i][j][8],blockParts[i][j][9])
     }
   }
+  
+  */
+  
+  
+  //blockParts[1][5] = go(blockParts[1][5])
+ // fill(blockParts[1][5][10])
+  //Rect(blockParts[1][5][6].x,blockParts[1][5][6].y,blockParts[1][5][8],blockParts[1][5][9])
+  
 }
 
 function draw() {
