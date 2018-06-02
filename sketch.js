@@ -52,6 +52,15 @@ var mino  = {
 }
 
 var isGameOver = false;
+var gameMode = "STOPED"
+
+function mouseClicked(){
+	if(gameMode==="STOPED"){
+		gameMode="PLAY"
+	}else if(gameMode==="PLAY"){
+		gameMode="STOPED"
+	}
+}
 
 function createMino(){
 	mino.shape = random(minos)
@@ -66,6 +75,7 @@ function clearLine() {
 		for(var i = 1;i<=10;i++) {
 			if(typeof arr[i] === "string"){
 				if(i===10){
+					gameMode="STOPED"
 					append(deleteArr,index)
 				}
 			}else{
@@ -80,27 +90,28 @@ function clearLine() {
 }
 
 function setup() {
-  createCanvas(120, 220);
+  createCanvas(240, 220);
 	frameRate(4)
 	createMino()
 	stroke(70)
 }
 
+function info(){
+	if(gameMode==="GAMEOVER"){
+		fill("red")
+	}
+	text(gameMode,140,110)
+}
+
 function draw() {
   background(220);
-	
 	clearLine()
-	
-	if(isGameOver===false){
+	if(gameMode==="PLAY"){
 		moveMino("DOWN")
 	}
-	
 	drawField()
   drawMino()
-	if(isGameOver){
-		fill("red")
-		text("GameOver",10,100)
-	}
+	info()
 }
 
 function moveMino(dir){
@@ -126,7 +137,7 @@ function moveMino(dir){
 				mino.X = 4
 				createMino()
 				if(tryMove()===false){
-					isGameOver = true
+					gameMode = "GAMEOVER"
 				}
 			}
 			break;
