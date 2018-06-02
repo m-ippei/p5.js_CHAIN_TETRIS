@@ -12,8 +12,10 @@ var Field = [
 
 function chain(arr) {
 	for(var i = 1; i<=3; i++){
-		if(Field[arr[0]-1][i]==="blue"){
-			Field[arr[0]-1][i] = 0
+		if(Field[arr[0]][i]==="red"){
+			if(Field[arr[0]-1][i]==="blue"){
+				Field[arr[0]-1][i] = 0
+			}
 		}
 	}
 	//console.log(arr)
