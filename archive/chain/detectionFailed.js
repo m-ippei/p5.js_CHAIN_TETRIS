@@ -43,7 +43,7 @@ function chainRule(num) {
 	for(var i=0;i<4;i++){
 		   //origin[num] and origin[num+1] is
 		   //o[0][0] and o[0][1]?
-			if((o[i][0] === a[num]) && (o[i][1] === a[num+1])){
+			if(o[i][0] === a[num] && o[i][1] === a[num+1]){
 				return true;
 			}
 	}
