@@ -69,7 +69,7 @@ function setup() {
 	console.log(ans2)
 	var temp = d(ans1)
 	console.log(temp)
-	console.log(chain(temp))
+	//console.log(chain(temp))
 }
 
 function draw() {
