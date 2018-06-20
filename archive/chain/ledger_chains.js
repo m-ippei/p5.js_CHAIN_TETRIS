@@ -1,9 +1,32 @@
+process.stdin.resume();
+process.stdin.setEncoding('utf8');
+// Your code here!
 let a = [
     0,0,0,
-    0,0,0,
+    "red","red","red",
     0,0,0
     ];
     
+let w = 3;
+let h = 3;
+let n = 6;
+let arrs = [];
+
+let ledger = {
+    chains:[]
+};
+
+for(let i = 0;i<w;i++){
+    if(a[n+1] === a[n]){
+        arrs.push(n+i);
+    }
+}
+
+console.log(arrs)
+
+
+/*
+
 let ledger = {
     chains:[
         [0,1,2],
@@ -12,6 +35,8 @@ let ledger = {
         ]
 };
 
+*/
+/*
 let lc = ledger.chains;
 
 for(let i=0;i<3;i++){
@@ -20,3 +45,4 @@ for(let i=0;i<3;i++){
     }
     console.log(a);
 }
+*/
